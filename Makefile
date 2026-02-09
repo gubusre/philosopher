@@ -6,7 +6,7 @@
 #    By: gubusque <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 00:20:30 by gubusque          #+#    #+#              #
-#    Updated: 2026/02/03 15:36:16 by gubusque         ###   ########.fr        #
+#    Updated: 2026/02/09 21:06:45 by gubusque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,10 @@ LIBFT_DIR	= libft/
 
 # Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#
 
-SRC	= main.c	\
-	  ft_checkers.c	\
-	  ft_free.c	\
-	  ft_error.c	\
-		
-# Objects \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#
+SRC_FILES	= main.c checkers.c clean.c get_time.c join.c monitor.c routine.c stop.c
 
-OBJ	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+SRC	= $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ	= $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
 # Libreries \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#
 
@@ -38,7 +34,7 @@ LIBFT	= $(LIBFT_DIR)libft.a
 
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -g
-LDFLAGS	= -L$(LIBFT_DIR)
+LDFLAGS	= -L$(LIBFT_DIR) -lft -pthread
 INCLUDE = -I$(INCLUDE_DIR) -I$(LIBFT_DIR)
 RM	= rm -rf
 
@@ -60,7 +56,7 @@ libft:
 	$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
 clean:
-	$(RM) $(OBJ) $(OBJ_DIR) $(LIBFT) $(LIBMLX)
+	$(RM) $(OBJ) $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
 
 fclean: clean
